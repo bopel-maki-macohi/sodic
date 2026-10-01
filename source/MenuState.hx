@@ -1,5 +1,6 @@
 package;
 
+import flixel.FlxObject;
 import flixel.FlxG;
 import flixel.text.FlxText;
 import flixel.group.FlxSpriteContainer;
@@ -14,6 +15,8 @@ class MenuState extends FlxState
 
 	var selection = 0;
 
+	var camFollow:FlxObject;
+
 	override public function create()
 	{
 		super.create();
@@ -22,10 +25,12 @@ class MenuState extends FlxState
 
 		for (i => item in items)
 		{
-			var text = new FlxText(0, 0, 0, item, textSize);
+			var text = new FlxText(10, 0, 0, item, textSize);
 			text.ID = i;
 			texts.add(text);
 		}
+
+		FlxG.camera.follow(camFollow = new FlxObject(FlxG.width / 2), LOCKON, 0.04);
 
 		changeSelection(0);
 	}
@@ -41,7 +46,11 @@ class MenuState extends FlxState
 
 	function select()
 	{
-		trace(items[selection]);
+		var item = items[selection].toLowerCase();
+		switch (item)
+		{
+			default: trace('Unimplmeneted : $item');
+		}
 	};
 
 	function changeSelection(amount = 0)
@@ -54,7 +63,9 @@ class MenuState extends FlxState
 		for (text in texts)
 		{
 			text.color = (selection == text.ID) ? 0xFFFFFF00 : 0xFFFFFFFF;
-			text.y = text.ID * textSize;
+			text.y = 10 + (text.ID * textSize);
+
+			if (selection == text.ID) camFollow.y = (FlxG.height / 2) + text.y;
 		}
 	}
 }
