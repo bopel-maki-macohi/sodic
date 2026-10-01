@@ -1,0 +1,21 @@
+{
+  "dependencies": [
+    {
+      "name": "FAE",
+      "type": "git",
+      "dir": null,
+      "ref": "dev",
+      "url": "https://github.com/bopel-maki-macohi/_FAE"
+    },
+    {
+      "name": "fae",
+      "type": "haxelib",
+      "version": "0.4.4"
+    },
+    {
+      "name": "flixel",
+      "type": "haxelib",
+      "version": "6.2.0"
+    }
+  ]
+}
